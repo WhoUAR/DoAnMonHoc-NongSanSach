@@ -1,0 +1,383 @@
+/* ============================================================================
+   NGƯỜI PHỤ TRÁCH: Nguyễn Thanh Liêm (0306241214)
+   CHỨC NĂNG: Trang trí trang truy xuất nguồn gốc.
+
+   Đây là trang công khai quan trọng nhất của đồ án - khách quét QR là mở.
+   Vì vậy phần đầu trang được làm như một TẤM NHÃN LÔ in thật: nền xanh đậm,
+   mã lô cỡ lớn, bốn ô thông tin xếp như nhãn thùng hàng.
+   ========================================================================== */
+
+.trace {
+  padding-bottom: var(--s8);
+}
+
+/* ==========================================================================
+   ĐẦU TRANG - NHÃN LÔ
+   ========================================================================== */
+
+.trace__header {
+  padding-block: var(--s6);
+  background: var(--green-900);
+  color: var(--paper);
+  border-bottom: 3px solid var(--kraft-300);
+}
+
+.trace__eyebrow {
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green-200);
+}
+
+.trace__code {
+  margin-top: var(--s2);
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--kraft-200);
+}
+
+.trace__header-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s4) var(--s5);
+  margin-top: var(--s5);
+  padding-top: var(--s4);
+  border-top: 1px solid rgba(246, 243, 234, 0.22);
+}
+
+.trace__header-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.trace__header-item .data-label {
+  color: var(--green-200);
+}
+
+.trace__header-value {
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   THÂN TRANG
+   ========================================================================== */
+
+.trace__body {
+  padding-top: var(--s6);
+}
+
+/* ---- Ba mốc thời gian ---- */
+
+.trace__dates {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 2px solid var(--green-800);
+  border-bottom: 1px solid var(--line);
+}
+
+.trace__date {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  align-items: flex-start;
+  padding: var(--s4) var(--s5) var(--s4) 0;
+}
+
+.trace__date + .trace__date {
+  padding-left: var(--s5);
+  border-left: 1px solid var(--line);
+}
+
+/* Ngày thu hoạch là mốc quan trọng nhất - đánh dấu bằng vạch đậm */
+.trace__date--key {
+  position: relative;
+}
+
+.trace__date--key::before {
+  content: '';
+  position: absolute;
+  left: var(--s5);
+  top: 0;
+  width: 48px;
+  height: 3px;
+  background: var(--stamp);
+}
+
+.trace__date-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+/* ---- Dòng thời gian ---- */
+
+.trace__timeline-section {
+  margin-top: var(--s7);
+}
+
+.trace__section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s2) var(--s5);
+  padding-bottom: var(--s3);
+  margin-bottom: var(--s5);
+  border-bottom: 2px solid var(--green-800);
+}
+
+.trace__section-head h2 {
+  font-size: 1.25rem;
+}
+
+.trace__section-note {
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+  max-width: 46ch;
+  text-align: right;
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline__item {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: var(--s4);
+  padding-bottom: var(--s5);
+}
+
+/* Vạch dọc nối các mốc */
+.timeline__marker {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.timeline__marker::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: calc(var(--s5) * -1);
+  width: 1px;
+  background: var(--line-strong);
+}
+
+.timeline__item:last-child .timeline__marker::before {
+  display: none;
+}
+
+/* Chấm tròn đánh dấu mốc - hình vuông vì hệ thống này dùng góc vuông */
+.timeline__dot {
+  position: relative;
+  width: 9px;
+  height: 9px;
+  margin-top: 6px;
+  background: var(--paper);
+  border: 2px solid var(--green-700);
+  flex-shrink: 0;
+}
+
+.timeline__item:last-child .timeline__dot {
+  background: var(--green-700);
+}
+
+.timeline__content {
+  min-width: 0;
+}
+
+.timeline__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s3);
+  margin-bottom: var(--s1);
+}
+
+.timeline__type {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--green-700);
+}
+
+.timeline__date {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+}
+
+.timeline__title {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+}
+
+.timeline__desc {
+  margin-top: var(--s1);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+
+.timeline__media {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  margin-top: var(--s3);
+}
+
+.timeline__media img {
+  width: 132px;
+  height: 100px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
+.timeline__author {
+  margin-top: var(--s2);
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+}
+
+/* ---- Ghi chú cuối trang ---- */
+
+.trace__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  margin-top: var(--s6);
+  padding-top: var(--s4);
+  border-top: 1px solid var(--line);
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+}
+
+/* ==========================================================================
+   CHẾ ĐỘ NHẬP MÃ
+   ========================================================================== */
+
+.trace__intro {
+  padding-block: var(--s7) var(--s5);
+  max-width: 62ch;
+}
+
+.trace__intro-body {
+  margin-top: var(--s3);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.trace__form {
+  max-width: 540px;
+  padding: var(--s5);
+  background: var(--kraft-100);
+  border: 1px solid var(--kraft-300);
+  border-radius: var(--radius);
+}
+
+.trace__form-row {
+  display: flex;
+  gap: var(--s2);
+}
+
+.trace__form-row .input {
+  flex: 1;
+  min-width: 0;
+}
+
+.trace__form-row .btn {
+  flex-shrink: 0;
+}
+
+.trace__how {
+  margin-top: var(--s7);
+  padding-top: var(--s4);
+  border-top: 2px solid var(--green-800);
+  max-width: 540px;
+}
+
+.trace__how-title {
+  margin-bottom: var(--s3);
+  font-size: 1rem;
+}
+
+.trace__how-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.trace__how-list li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s3);
+  padding-block: var(--s2);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+}
+
+.trace__how-list .data {
+  font-size: 0.6875rem;
+  color: var(--ink-faint);
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   ĐÁP ỨNG
+   ========================================================================== */
+
+@media (max-width: 860px) {
+  .trace__header-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .trace__dates {
+    grid-template-columns: 1fr;
+  }
+
+  .trace__date {
+    padding: var(--s3) 0;
+  }
+
+  .trace__date + .trace__date {
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid var(--line);
+  }
+
+  .trace__date--key::before {
+    left: 0;
+    top: -1px;
+  }
+
+  .trace__section-note {
+    text-align: left;
+  }
+}
+
+@media (max-width: 560px) {
+  .trace__form-row {
+    flex-direction: column;
+  }
+
+  .trace__form-row .btn {
+    width: 100%;
+  }
+
+  .timeline__media img {
+    width: calc(50% - var(--s2));
+    height: 90px;
+  }
+}

@@ -1,0 +1,581 @@
+/* ============================================================================
+   NGƯỜI PHỤ TRÁCH: Đào Quốc Đạt (0306241190)
+   CHỨC NĂNG: Hệ thống thiết kế (design tokens + thành phần cơ bản).
+
+   HƯỚNG THIẾT KẾ: "Bảng lô của nhà đóng gói".
+
+   Ý tưởng: giao diện đọc như hệ thống nhãn thùng và sổ theo dõi lô hàng của
+   một nhà vựa thật - nền xanh nông nghiệp đậm, thẻ hàng là những tấm nhãn
+   kraft, số liệu canh cột như sổ cái, hàng cận hạn đóng dấu đỏ.
+
+   VÌ SAO CHỌN HƯỚNG NÀY:
+   - Đề tài bán nông sản tươi có hạn dùng ngắn. Thứ khách cần thấy không phải
+     ảnh đẹp mà là BẰNG CHỨNG: lô nào, thu hoạch ngày nào, còn mấy ngày.
+   - Các trang TMĐT nông sản thường dùng nền trắng + bo tròn mềm + gradient.
+     Chọn hướng ngược lại để sản phẩm trông như công cụ của người làm nông
+     thật, và để giảng viên thấy được lý do thiết kế.
+
+   NHỮNG THỨ CỐ TÌNH KHÔNG DÙNG:
+   - Không gradient tím-xanh, không glassmorphism.
+   - Không bo tròn mềm 16px cho mọi thứ - dùng góc vuông và góc vát nhẹ.
+   - Không hero + 3 thẻ tính năng đều nhau.
+   - Không emoji thay icon.
+   ========================================================================== */
+
+:root {
+  /* ---- Màu ---------------------------------------------------------------
+     Nền: xanh nông nghiệp đậm - màu lưới che nắng và thùng nhựa ngoài vườn.
+     Giấy: kraft và trắng ngà - nhãn giấy dán thùng.
+     Điểm nhấn: đỏ cam của mực đóng dấu "CẬN HẠN".
+     Xanh lá non dùng cho trạng thái còn tốt. */
+  --green-900: #10281F;
+  --green-800: #17362A;
+  --green-700: #1F4936;
+  --green-600: #2A6047;
+  --green-500: #3B7D5C;
+  --green-200: #A9C5B4;
+
+  --kraft-300: #D9C9A8;
+  --kraft-200: #E8DCC8;
+  --kraft-100: #F1E8D8;
+
+  --paper: #F6F3EA;
+  --paper-dim: #EDE8DB;
+
+  --ink: #16211C;
+  --ink-soft: #46554D;
+  --ink-faint: #6D7C73;
+
+  --stamp: #C8451B;
+  --stamp-dark: #9C3414;
+  --stamp-tint: #F6DED4;
+
+  --leaf: #6B9E4E;
+  --leaf-tint: #E6EFDC;
+
+  --amber: #B8862B;
+
+  /* ---- Chữ ---------------------------------------------------------------
+     Archivo cho nội dung. Chivo Mono CHỈ cho số liệu: mã lô, kg, tiền, ngày.
+     Dùng mono cho số là quyết định kỹ thuật - cột số phải thẳng hàng. */
+  --font-body: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  --font-data: 'Chivo Mono', ui-monospace, 'Courier New', monospace;
+
+  /* ---- Khoảng cách: nhịp 4px ------------------------------------------- */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 48px;
+  --s8: 64px;
+  --s9: 96px;
+
+  /* ---- Đường kẻ: sổ cái dùng kẻ mảnh 1px ------------------------------- */
+  --rule: 1px solid var(--line);
+  --line: rgba(22, 33, 28, 0.16);
+  --line-strong: rgba(22, 33, 28, 0.32);
+  --line-light: rgba(246, 243, 234, 0.22);
+
+  /* ---- Bóng đổ: có phương và làm mờ, không phải quầng màu ------------- */
+  --shadow-sm: 0 1px 2px rgba(16, 40, 31, 0.08);
+  --shadow-md: 0 2px 4px rgba(16, 40, 31, 0.07), 0 8px 20px rgba(16, 40, 31, 0.08);
+  --shadow-lg: 0 4px 10px rgba(16, 40, 31, 0.09), 0 18px 40px rgba(16, 40, 31, 0.12);
+
+  --radius-sm: 2px;
+  --radius: 3px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   NỀN TẢNG
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  letter-spacing: -0.032em;
+}
+
+h2 {
+  font-size: clamp(1.375rem, 2.6vw, 1.875rem);
+}
+
+h3 {
+  font-size: 1.125rem;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* Vòng focus: viền đậm, không phải quầng mờ mặc định của trình duyệt */
+:focus-visible {
+  outline: 2px solid var(--green-600);
+  outline-offset: 2px;
+}
+
+/* Bôi đen chữ mang màu của bảng lô, không phải xanh mặc định */
+::selection {
+  background: var(--green-700);
+  color: var(--paper);
+}
+
+/* Thanh cuộn: kẻ mảnh, màu theo nền */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--kraft-300) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--kraft-300);
+  border: 3px solid var(--paper);
+  border-radius: 0;
+}
+
+/* ==========================================================================
+   TIỆN ÍCH
+   ========================================================================== */
+
+/* Số liệu: dùng cho mã lô, kg, tiền, ngày tháng */
+.data {
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+  letter-spacing: -0.01em;
+}
+
+/* Nhãn nhỏ đặt trên số liệu. Không dùng làm "eyebrow" trang trí trên tiêu đề. */
+.data-label {
+  font-family: var(--font-data);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.wrap {
+  width: min(1180px, 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    width: min(1180px, 100% - 2rem);
+  }
+}
+
+.stack > * + * {
+  margin-top: var(--s4);
+}
+
+/* ==========================================================================
+   NÚT
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s2);
+  min-height: 46px;
+  padding: 0 var(--s5);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.16s var(--ease-out),
+    border-color 0.16s var(--ease-out), color 0.16s var(--ease-out),
+    transform 0.12s var(--ease-out);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.btn--primary {
+  background: var(--stamp);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: var(--stamp-dark);
+}
+
+.btn--solid {
+  background: var(--green-800);
+  color: var(--paper);
+}
+
+.btn--solid:hover:not(:disabled) {
+  background: var(--green-700);
+}
+
+.btn--outline {
+  background: transparent;
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+.btn--outline:hover:not(:disabled) {
+  background: var(--paper-dim);
+  border-color: var(--ink);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ink-soft);
+  padding-inline: var(--s3);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  color: var(--ink);
+  background: var(--paper-dim);
+}
+
+.btn--sm {
+  min-height: 36px;
+  padding-inline: var(--s4);
+  font-size: 0.875rem;
+}
+
+.btn--block {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Ô NHẬP LIỆU
+   ========================================================================== */
+
+.field {
+  display: block;
+}
+
+.field + .field {
+  margin-top: var(--s4);
+}
+
+.field__label {
+  display: block;
+  margin-bottom: var(--s2);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.field__hint {
+  margin-top: var(--s1);
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+}
+
+.field__error {
+  margin-top: var(--s1);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--stamp-dark);
+}
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  min-height: 46px;
+  padding: var(--s3) var(--s3);
+  background: #fff;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  font-size: 0.9375rem;
+  transition: border-color 0.16s var(--ease-out), box-shadow 0.16s var(--ease-out);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--ink-faint);
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--green-600);
+  box-shadow: 0 0 0 3px rgba(42, 96, 71, 0.14);
+}
+
+.input--invalid,
+.textarea--invalid {
+  border-color: var(--stamp);
+}
+
+.textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* ==========================================================================
+   THẺ - tấm nhãn kraft
+   ========================================================================== */
+
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.card--kraft {
+  background: var(--kraft-100);
+  border-color: var(--kraft-300);
+}
+
+/* ==========================================================================
+   TEM / NHÃN TRẠNG THÁI
+   ========================================================================== */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-data);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tag--good {
+  background: var(--leaf-tint);
+  border-color: #BCD2A5;
+  color: #3E6129;
+}
+
+.tag--warn {
+  background: #FBF0D9;
+  border-color: #E3CB9A;
+  color: #7A5614;
+}
+
+.tag--danger {
+  background: var(--stamp-tint);
+  border-color: #E4B7A3;
+  color: var(--stamp-dark);
+}
+
+.tag--neutral {
+  background: var(--paper-dim);
+  color: var(--ink-soft);
+}
+
+/* ==========================================================================
+   BẢNG SỔ CÁI
+   ========================================================================== */
+
+.ledger {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.ledger th {
+  padding: var(--s3) var(--s4);
+  border-bottom: 1px solid var(--line-strong);
+  font-family: var(--font-data);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.ledger td {
+  padding: var(--s4);
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+.ledger tbody tr:hover {
+  background: var(--paper-dim);
+}
+
+.ledger .num {
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/* ==========================================================================
+   TRẠNG THÁI RỖNG / ĐANG TẢI
+   ========================================================================== */
+
+.empty {
+  padding: var(--s8) var(--s5);
+  text-align: center;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius);
+  color: var(--ink-faint);
+}
+
+.empty__title {
+  margin-bottom: var(--s2);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--paper-dim) 0%,
+    var(--kraft-100) 50%,
+    var(--paper-dim) 100%
+  );
+  background-size: 200% 100%;
+  border-radius: var(--radius-sm);
+  animation: skeleton-sweep 1.4s ease-in-out infinite;
+}
+
+@keyframes skeleton-sweep {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ==========================================================================
+   CHUYỂN ĐỘNG
+   Chuyển động duy nhất của trang: nội dung trồi lên như một tấm nhãn được dán.
+   Dùng ease-out hàm mũ, phần tử hiện sẵn rồi mới chuyển vào.
+   ========================================================================== */
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.enter {
+  animation: slide-in 0.45s var(--ease-out) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   CHÂN TRANG
+   Nền kraft nhạt, kẻ mảnh phía trên như mép cuối trang sổ.
+   ========================================================================== */
+
+.site-footer {
+  border-top: 1px solid var(--kraft-300);
+  background: var(--kraft-200);
+  padding-block: var(--s6);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s3) var(--s5);
+}
+
+.site-footer__name {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.site-footer__line {
+  margin-top: 3px;
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+}

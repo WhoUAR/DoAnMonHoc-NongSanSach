@@ -1,0 +1,363 @@
+/* ============================================================================
+   NGƯỜI PHỤ TRÁCH: Nguyễn Thanh Liêm (0306241214)
+   CHỨC NĂNG: Trang trí trang chi tiết sản phẩm và bảng lô của sản phẩm đó.
+   ========================================================================== */
+
+.product-detail {
+  padding-block: var(--s5) var(--s8);
+}
+
+.product-detail__crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s2);
+  margin-bottom: var(--s5);
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+}
+
+.product-detail__crumbs a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.product-detail__crumbs a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.product-detail__crumbs [aria-current] {
+  color: var(--ink);
+}
+
+.product-detail__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: var(--s7);
+  align-items: start;
+}
+
+/* ---- Ảnh ---- */
+
+.product-detail__media {
+  aspect-ratio: 4 / 3;
+  background: var(--kraft-100);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.product-detail__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-detail__placeholder {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  color: var(--green-500);
+  opacity: 0.5;
+}
+
+/* ---- Thông tin ---- */
+
+.product-detail__name {
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+}
+
+.product-detail__origin {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--s2);
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+}
+
+.product-detail__price-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s2);
+  margin-top: var(--s5);
+  padding-bottom: var(--s4);
+  border-bottom: 1px solid var(--line);
+}
+
+.product-detail__price {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--green-800);
+  letter-spacing: -0.02em;
+}
+
+.product-detail__unit {
+  font-size: 0.875rem;
+  color: var(--ink-faint);
+}
+
+.product-detail__was {
+  font-size: 0.9375rem;
+  color: var(--ink-faint);
+  text-decoration: line-through;
+}
+
+.product-detail__desc {
+  margin-top: var(--s4);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 60ch;
+}
+
+.product-detail__buy {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s3);
+  margin-top: var(--s5);
+}
+
+.product-detail__add {
+  flex: 1;
+  min-width: 180px;
+}
+
+.product-detail__stock {
+  margin-top: var(--s3);
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+}
+
+.product-detail__goto-cart {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--s3);
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--green-700);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---- Bộ tăng giảm số lượng ---- */
+
+.stepper {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: #fff;
+  overflow: hidden;
+}
+
+.stepper__btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background-color 0.14s var(--ease-out);
+}
+
+.stepper__btn:hover:not(:disabled) {
+  background: var(--paper-dim);
+}
+
+.stepper__btn:disabled {
+  color: var(--ink-faint);
+  cursor: not-allowed;
+}
+
+.stepper__input {
+  width: 62px;
+  height: 44px;
+  border: none;
+  border-inline: 1px solid var(--line);
+  text-align: center;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  background: none;
+}
+
+.stepper__input:focus {
+  outline: none;
+  background: var(--paper-dim);
+}
+
+/* Ẩn mũi tên mặc định của input number */
+.stepper__input::-webkit-outer-spin-button,
+.stepper__input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.stepper__input {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.stepper__unit {
+  padding-right: var(--s3);
+  font-family: var(--font-data);
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+}
+
+/* ==========================================================================
+   BẢNG LÔ CỦA SẢN PHẨM
+   ========================================================================== */
+
+.batch-panel {
+  margin-top: var(--s8);
+  padding-top: var(--s5);
+  border-top: 2px solid var(--green-800);
+}
+
+.batch-panel__head {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: var(--s5);
+  align-items: baseline;
+  margin-bottom: var(--s4);
+}
+
+.batch-panel__head h2 {
+  font-size: 1.25rem;
+}
+
+.batch-panel__note {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 52ch;
+}
+
+.batch-panel__list {
+  border-top: 1px solid var(--line-strong);
+}
+
+.batch-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 110px 120px;
+  align-items: center;
+  gap: var(--s3);
+  padding: var(--s3) var(--s2);
+  border-bottom: 1px solid var(--line);
+  transition: background-color 0.14s var(--ease-out);
+}
+
+.batch-row:hover {
+  background: var(--paper-dim);
+}
+
+.batch-row__rank {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+}
+
+/* Lô đầu tiên được đánh dấu vì đó là lô FEFO sẽ lấy trước */
+.batch-row:first-child .batch-row__rank::before {
+  content: '';
+  width: 3px;
+  height: 26px;
+  background: var(--stamp);
+  margin-right: var(--s1);
+}
+
+.batch-row__next {
+  font-size: 0.625rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--stamp-dark);
+}
+
+.batch-row__main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.batch-row__code {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.batch-row__harvest {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+}
+
+.batch-row__amount {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-align: right;
+}
+
+.batch-row__unit {
+  margin-left: 3px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+
+/* ==========================================================================
+   ĐÁP ỨNG
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .product-detail__grid {
+    grid-template-columns: 1fr;
+    gap: var(--s5);
+  }
+
+  .batch-panel__head {
+    grid-template-columns: 1fr;
+    gap: var(--s2);
+  }
+}
+
+@media (max-width: 600px) {
+  .batch-row {
+    grid-template-columns: 1fr auto;
+    gap: var(--s2);
+    padding-block: var(--s4);
+  }
+
+  .batch-row__rank {
+    grid-column: 1 / -1;
+    order: -1;
+  }
+
+  .batch-row__amount {
+    text-align: left;
+  }
+
+  .batch-row .tag {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+
+  .product-detail__buy {
+    flex-direction: column;
+  }
+
+  .stepper {
+    align-self: flex-start;
+  }
+}

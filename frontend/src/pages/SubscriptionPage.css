@@ -1,0 +1,332 @@
+/* ============================================================================
+   NGƯỜI PHỤ TRÁCH: Trần Thanh An (0306241171)
+   CHỨC NĂNG: Trang trí trang gói định kỳ, lịch thứ, và hộp thoại đăng ký.
+   ========================================================================== */
+
+.subscription {
+  padding-block: var(--s6) var(--s8);
+}
+
+.subscription__intro {
+  max-width: 62ch;
+  padding-bottom: var(--s4);
+  margin-bottom: var(--s6);
+  border-bottom: 2px solid var(--green-800);
+}
+
+.subscription__intro p {
+  margin-top: var(--s3);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+/* ==========================================================================
+   GÓI CỦA KHÁCH
+   ========================================================================== */
+
+.my-subs {
+  margin-bottom: var(--s6);
+}
+
+.my-subs__title {
+  margin-bottom: var(--s3);
+  font-size: 0.6875rem;
+  font-family: var(--font-data);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.my-sub {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: var(--s5);
+  padding: var(--s4);
+  margin-bottom: var(--s2);
+  background: var(--leaf-tint);
+  border: 1px solid #BCD2A5;
+  border-radius: var(--radius);
+}
+
+.my-sub__code {
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+}
+
+.my-sub__main h3 {
+  margin-block: 2px 3px;
+  font-size: 1.0625rem;
+}
+
+.my-sub__dates {
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+}
+
+.my-sub__next {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: right;
+}
+
+.my-sub__next .data {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   DANH SÁCH GÓI
+   ========================================================================== */
+
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s5);
+  align-items: start;
+}
+
+.plan-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--s5);
+  background: #fff;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+}
+
+/* Gói nổi bật: viền đậm hơn, có nhãn ở góc */
+.plan-card--featured {
+  position: relative;
+  border: 2px solid var(--green-800);
+}
+
+.plan-card__badge {
+  position: absolute;
+  top: -1px;
+  right: var(--s4);
+  padding: 3px 9px;
+  background: var(--stamp);
+  color: #fff;
+  font-family: var(--font-data);
+  font-size: 0.625rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.plan-card__name {
+  font-size: 1.25rem;
+}
+
+.plan-card__desc {
+  margin-top: var(--s2);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.plan-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s2);
+  margin-block: var(--s4);
+  padding-block: var(--s3);
+  border-block: 1px solid var(--line);
+}
+
+.plan-card__price .data {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--green-900);
+  letter-spacing: -0.025em;
+}
+
+.plan-card__period {
+  font-size: 0.875rem;
+  color: var(--ink-faint);
+}
+
+.plan-card__schedule,
+.plan-card__items {
+  margin-bottom: var(--s4);
+}
+
+/* ---- Ô thứ trong tuần ---- */
+
+.weekday-row {
+  display: flex;
+  gap: 5px;
+  margin-top: var(--s2);
+}
+
+.weekday {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 34px;
+  background: var(--paper-dim);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ink-faint);
+}
+
+/* Ngày có giao: nền xanh đậm, chữ sáng */
+.weekday.is-active {
+  background: var(--green-800);
+  color: var(--paper);
+}
+
+.weekday--button {
+  cursor: pointer;
+  transition: background-color 0.14s var(--ease-out), color 0.14s var(--ease-out);
+}
+
+.weekday--button:hover {
+  border-color: var(--green-600);
+}
+
+/* ---- Danh sách sản phẩm trong gói ---- */
+
+.plan-card__items ul {
+  list-style: none;
+  margin: var(--s2) 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.plan-card__items li {
+  padding-block: var(--s2);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+}
+
+.plan-card__items .data {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.plan-card > .btn {
+  margin-top: auto;
+}
+
+/* ==========================================================================
+   HỘP THOẠI ĐĂNG KÝ
+   ========================================================================== */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: var(--s4);
+  background: rgba(16, 40, 31, 0.55);
+  animation: modal-in 0.2s var(--ease-out);
+  overflow-y: auto;
+}
+
+@keyframes modal-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal {
+  width: min(560px, 100%);
+  max-height: calc(100vh - var(--s8));
+  overflow-y: auto;
+  background: var(--paper);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+}
+
+.modal__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s4);
+  padding: var(--s4) var(--s5);
+  background: var(--green-800);
+  color: var(--paper);
+  position: sticky;
+  top: 0;
+}
+
+.modal__head h2 {
+  font-size: 1.0625rem;
+}
+
+.modal__close {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  background: none;
+  border: 1px solid rgba(246, 243, 234, 0.28);
+  border-radius: var(--radius-sm);
+  color: var(--paper);
+  cursor: pointer;
+}
+
+.modal__close:hover {
+  background: rgba(246, 243, 234, 0.1);
+}
+
+.modal__body {
+  padding: var(--s5);
+}
+
+.modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--s2);
+  margin-top: var(--s5);
+  padding-top: var(--s4);
+  border-top: 1px solid var(--line);
+}
+
+/* ==========================================================================
+   ĐÁP ỨNG
+   ========================================================================== */
+
+@media (max-width: 820px) {
+  .plan-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .my-sub {
+    grid-template-columns: 1fr;
+    gap: var(--s3);
+  }
+
+  .my-sub__next {
+    text-align: left;
+  }
+
+  .my-sub .tag {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 560px) {
+  .weekday {
+    width: 34px;
+    height: 32px;
+    font-size: 0.6875rem;
+  }
+
+  .modal__actions {
+    flex-direction: column-reverse;
+  }
+
+  .modal__actions .btn {
+    width: 100%;
+  }
+}

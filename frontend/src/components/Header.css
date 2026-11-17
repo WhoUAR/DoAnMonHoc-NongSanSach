@@ -1,0 +1,250 @@
+/* ============================================================================
+   NGƯỜI PHỤ TRÁCH: Đào Quốc Đạt (0306241190)
+   CHỨC NĂNG: Trang trí thanh điều hướng.
+
+   Đây là "tấm biển ngoài cổng nông trại": nền xanh đậm đặc, chữ giấy ngà,
+   một vạch kẻ mảnh phía dưới như mép tôn của biển hiệu.
+   Không bo tròn, không đổ bóng mờ - biển hiệu thì phẳng.
+   ========================================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--green-800);
+  color: var(--paper);
+  border-bottom: 1px solid var(--line-light);
+}
+
+.site-header__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--s5);
+  min-height: 68px;
+}
+
+/* ---- Logo ---- */
+
+.site-header__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.site-header__mark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  background: var(--kraft-200);
+  color: var(--green-900);
+  font-family: var(--font-data);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  /* Góc vát nhẹ như góc tem dán thùng */
+  clip-path: polygon(0 0, 100% 0, 100% 62%, 88% 100%, 0 100%);
+}
+
+.site-header__wordmark {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.site-header__sub {
+  font-family: var(--font-data);
+  font-size: 0.625rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--green-200);
+  margin-top: 2px;
+}
+
+/* ---- Menu ---- */
+
+.site-header__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--s1);
+  margin-left: auto;
+}
+
+.site-header__link {
+  padding: var(--s2) var(--s3);
+  border-radius: var(--radius-sm);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: rgba(246, 243, 234, 0.78);
+  text-decoration: none;
+  transition: color 0.16s var(--ease-out), background-color 0.16s var(--ease-out);
+}
+
+.site-header__link:hover {
+  color: var(--paper);
+  background: rgba(246, 243, 234, 0.08);
+}
+
+.site-header__link.active {
+  color: var(--paper);
+  background: rgba(246, 243, 234, 0.13);
+}
+
+/* ---- Khu vực bên phải ---- */
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding-left: var(--s4);
+  border-left: 1px solid var(--line-light);
+}
+
+.site-header__cart {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: var(--s2) var(--s3);
+  color: var(--paper);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.16s var(--ease-out);
+}
+
+.site-header__cart:hover {
+  background: rgba(246, 243, 234, 0.08);
+}
+
+.site-header__count {
+  display: grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  padding-inline: 5px;
+  background: var(--stamp);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  font-size: 0.6875rem;
+  font-weight: 700;
+}
+
+.site-header__account {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+}
+
+.site-header__name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(246, 243, 234, 0.9);
+  white-space: nowrap;
+}
+
+.site-header__logout {
+  padding: var(--s1) var(--s2);
+  background: none;
+  border: none;
+  font-size: 0.8125rem;
+  color: var(--green-200);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.site-header__logout:hover {
+  color: var(--paper);
+}
+
+.site-header__login {
+  padding: var(--s2) var(--s4);
+  background: var(--kraft-200);
+  color: var(--green-900);
+  border-radius: var(--radius);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.16s var(--ease-out);
+}
+
+.site-header__login:hover {
+  background: var(--kraft-100);
+}
+
+.site-header__toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid var(--line-light);
+  border-radius: var(--radius-sm);
+  color: var(--paper);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   ĐIỆN THOẠI
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .site-header__bar {
+    flex-wrap: wrap;
+    gap: var(--s3);
+    padding-block: var(--s3);
+    min-height: 0;
+  }
+
+  .site-header__toggle {
+    display: flex;
+  }
+
+  .site-header__actions {
+    margin-left: auto;
+    padding-left: var(--s3);
+    border-left: none;
+  }
+
+  /* Menu xổ xuống toàn chiều ngang, xếp dọc */
+  .site-header__nav {
+    display: none;
+    order: 3;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin-left: 0;
+    padding-top: var(--s2);
+    border-top: 1px solid var(--line-light);
+  }
+
+  .site-header__nav.is-open {
+    display: flex;
+  }
+
+  .site-header__link {
+    padding: var(--s3) var(--s1);
+    border-bottom: 1px solid rgba(246, 243, 234, 0.08);
+  }
+
+  .site-header__cart-label,
+  .site-header__name {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header__sub {
+    display: none;
+  }
+}

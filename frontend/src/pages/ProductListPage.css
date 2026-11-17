@@ -1,0 +1,135 @@
+/* ============================================================================
+   NGƯỜI PHỤ TRÁCH: Nguyễn Thanh Liêm (0306241214)
+   CHỨC NĂNG: Trang trí trang danh sách sản phẩm và thanh bộ lọc.
+   ========================================================================== */
+
+.product-list {
+  padding-block: var(--s6) var(--s8);
+}
+
+.product-list__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s2);
+  padding-bottom: var(--s3);
+  border-bottom: 2px solid var(--green-800);
+}
+
+.product-list__head h1 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.product-list__count {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* ==========================================================================
+   THANH BỘ LỌC
+   ========================================================================== */
+
+.filters {
+  padding-block: var(--s4);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--s5);
+}
+
+.filters__search {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  padding-left: var(--s3);
+  background: #fff;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  color: var(--ink-faint);
+  max-width: 480px;
+  transition: border-color 0.16s var(--ease-out), box-shadow 0.16s var(--ease-out);
+}
+
+.filters__search:focus-within {
+  border-color: var(--green-600);
+  box-shadow: 0 0 0 3px rgba(42, 96, 71, 0.13);
+}
+
+.filters__input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  border: none;
+  background: none;
+  font-size: 0.9375rem;
+  outline: none;
+}
+
+.filters__input::placeholder {
+  color: var(--ink-faint);
+}
+
+.filters__search .btn {
+  margin: 3px;
+}
+
+.filters__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--s4);
+  margin-top: var(--s4);
+}
+
+.filters__field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.filters__label {
+  font-family: var(--font-data);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.select--compact {
+  min-height: 40px;
+  padding-block: var(--s2);
+  min-width: 160px;
+  font-size: 0.875rem;
+}
+
+.filters__clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 40px;
+  padding-inline: var(--s2);
+  background: none;
+  border: none;
+  font-size: 0.875rem;
+  color: var(--stamp-dark);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .filters__row {
+    gap: var(--s3);
+  }
+
+  .filters__field {
+    flex: 1 1 calc(50% - var(--s3));
+  }
+
+  .select--compact {
+    min-width: 0;
+    width: 100%;
+  }
+}

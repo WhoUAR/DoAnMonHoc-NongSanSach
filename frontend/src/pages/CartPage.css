@@ -1,0 +1,281 @@
+/* ============================================================================
+   NGƯỜI PHỤ TRÁCH: Trần Thanh An (0306241171)
+   CHỨC NĂNG: Trang trí trang giỏ hàng.
+   ========================================================================== */
+
+.cart {
+  padding-block: var(--s6) var(--s8);
+}
+
+.cart__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s4);
+  padding-bottom: var(--s3);
+  margin-bottom: var(--s5);
+  border-bottom: 2px solid var(--green-800);
+}
+
+.cart__title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.cart__clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: 0.875rem;
+  color: var(--ink-faint);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cart__clear:hover {
+  color: var(--stamp-dark);
+}
+
+.cart__grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: var(--s6);
+  align-items: start;
+}
+
+/* ==========================================================================
+   MÓN TRONG GIỎ
+   ========================================================================== */
+
+.cart__items {
+  border-top: 1px solid var(--line-strong);
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 84px 1fr auto;
+  gap: var(--s4);
+  align-items: center;
+  padding-block: var(--s4);
+  border-bottom: 1px solid var(--line);
+}
+
+.cart-item__media {
+  width: 84px;
+  height: 68px;
+  background: var(--kraft-100);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.cart-item__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cart-item__placeholder {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  color: var(--green-500);
+  opacity: 0.55;
+}
+
+.cart-item__name {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.cart-item__price {
+  margin-top: 3px;
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+}
+
+.cart-item__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+}
+
+.stepper--sm {
+  border-radius: var(--radius-sm);
+}
+
+.stepper--sm .stepper__btn {
+  width: 32px;
+  height: 34px;
+}
+
+.stepper__value {
+  display: grid;
+  place-items: center;
+  min-width: 42px;
+  height: 34px;
+  border-inline: 1px solid var(--line);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.cart-item__total {
+  min-width: 92px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-align: right;
+}
+
+.cart-item__remove {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  color: var(--ink-faint);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: color 0.14s var(--ease-out), background-color 0.14s var(--ease-out);
+}
+
+.cart-item__remove:hover {
+  color: var(--stamp-dark);
+  background: var(--stamp-tint);
+}
+
+/* ==========================================================================
+   TÓM TẮT
+   ========================================================================== */
+
+.cart__summary {
+  position: sticky;
+  top: 88px;
+  padding: var(--s5);
+  background: var(--kraft-100);
+  border: 1px solid var(--kraft-300);
+  border-radius: var(--radius);
+}
+
+.cart__summary-title {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  padding-bottom: var(--s3);
+  border-bottom: 1px solid var(--kraft-300);
+}
+
+.cart__lines {
+  margin: 0;
+  padding: var(--s3) 0;
+}
+
+.cart__line {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s3);
+  padding-block: 5px;
+  font-size: 0.9375rem;
+}
+
+.cart__line dt {
+  color: var(--ink-soft);
+}
+
+.cart__line dd {
+  margin: 0;
+  font-weight: 500;
+}
+
+.cart__hint {
+  margin-bottom: var(--s3);
+  padding: var(--s2) var(--s3);
+  background: #FBF0D9;
+  border: 1px solid #E3CB9A;
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  color: #7A5614;
+}
+
+.cart__total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s3);
+  padding-top: var(--s3);
+  padding-bottom: var(--s4);
+  border-top: 2px solid var(--green-800);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.cart__total strong {
+  font-size: 1.375rem;
+  color: var(--green-900);
+  letter-spacing: -0.02em;
+}
+
+.cart__note {
+  margin-top: var(--s3);
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  text-align: center;
+}
+
+.cart__continue {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--s4);
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.cart__continue:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ==========================================================================
+   ĐÁP ỨNG
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .cart__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cart__summary {
+    position: static;
+  }
+}
+
+@media (max-width: 560px) {
+  .cart-item {
+    grid-template-columns: 64px 1fr;
+    gap: var(--s3);
+  }
+
+  .cart-item__media {
+    width: 64px;
+    height: 56px;
+  }
+
+  .cart-item__controls {
+    grid-column: 1 / -1;
+    justify-content: space-between;
+    gap: var(--s3);
+    padding-top: var(--s2);
+    border-top: 1px dashed var(--line);
+  }
+
+  .cart-item__total {
+    min-width: 0;
+  }
+}

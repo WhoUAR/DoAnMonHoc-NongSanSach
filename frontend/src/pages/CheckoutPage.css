@@ -1,0 +1,302 @@
+/* ============================================================================
+   NGƯỜI PHỤ TRÁCH: Trần Quốc Khánh (Nhóm trưởng - 0306241206)
+   CHỨC NĂNG: Trang trí trang thanh toán.
+   ========================================================================== */
+
+.checkout {
+  padding-block: var(--s6) var(--s8);
+}
+
+.checkout__head {
+  padding-bottom: var(--s3);
+  margin-bottom: var(--s5);
+  border-bottom: 2px solid var(--green-800);
+}
+
+.checkout__head h1 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.checkout__guest-note {
+  margin-top: var(--s2);
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+}
+
+.checkout__guest-note a {
+  color: var(--green-700);
+  font-weight: 600;
+  text-underline-offset: 3px;
+}
+
+.checkout__grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: var(--s6);
+  align-items: start;
+}
+
+/* ==========================================================================
+   BIỂU MẪU
+   ========================================================================== */
+
+.checkout__section + .checkout__section {
+  margin-top: var(--s6);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--line);
+}
+
+.checkout__section-title {
+  margin-bottom: var(--s3);
+  font-size: 0.6875rem;
+  font-family: var(--font-data);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.field__optional {
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+
+/* ---- Chọn phương thức thanh toán ---- */
+
+.pay-options {
+  display: grid;
+  gap: var(--s3);
+}
+
+.pay-option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s3);
+  padding: var(--s4);
+  background: #fff;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color 0.16s var(--ease-out), background-color 0.16s var(--ease-out);
+}
+
+.pay-option:hover {
+  border-color: var(--ink-faint);
+}
+
+.pay-option.is-active {
+  border-color: var(--green-700);
+  background: var(--leaf-tint);
+}
+
+.pay-option input {
+  margin-top: 3px;
+  width: 17px;
+  height: 17px;
+  accent-color: var(--green-700);
+  flex-shrink: 0;
+}
+
+.pay-option__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pay-option__name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.pay-option__desc {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* ---- Điểm tích luỹ ---- */
+
+.checkout__points-note {
+  margin-bottom: var(--s3);
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+}
+
+.checkout__points-note strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.points-row {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  flex-wrap: wrap;
+}
+
+.points-row__slider {
+  flex: 1;
+  min-width: 140px;
+  accent-color: var(--green-700);
+  height: 6px;
+}
+
+.points-row__input {
+  width: 76px;
+  min-height: 38px;
+  padding-block: var(--s1);
+  text-align: center;
+  font-weight: 600;
+}
+
+.checkout__discount {
+  margin-top: var(--s3);
+  font-size: 0.875rem;
+  color: #3E6129;
+}
+
+.checkout__discount .data {
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   TÓM TẮT
+   ========================================================================== */
+
+.checkout__summary {
+  position: sticky;
+  top: 88px;
+  padding: var(--s5);
+  background: var(--kraft-100);
+  border: 1px solid var(--kraft-300);
+  border-radius: var(--radius);
+}
+
+.checkout__summary-title {
+  padding-bottom: var(--s3);
+  border-bottom: 1px solid var(--kraft-300);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.checkout__items {
+  list-style: none;
+  margin: 0;
+  padding: var(--s3) 0;
+  border-bottom: 1px solid var(--kraft-300);
+}
+
+.checkout__item {
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  gap: var(--s2);
+  padding-block: 5px;
+  font-size: 0.875rem;
+}
+
+.checkout__item-qty {
+  color: var(--ink-faint);
+}
+
+.checkout__item-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.checkout__item-price {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.checkout__lines {
+  margin: 0;
+  padding: var(--s3) 0;
+}
+
+.checkout__line {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s3);
+  padding-block: 5px;
+  font-size: 0.9375rem;
+}
+
+.checkout__line dt {
+  color: var(--ink-soft);
+}
+
+.checkout__line dd {
+  margin: 0;
+  font-weight: 500;
+}
+
+.checkout__line--discount {
+  color: #3E6129;
+}
+
+.checkout__line--discount dt,
+.checkout__line--discount dd {
+  color: inherit;
+}
+
+.checkout__total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s3);
+  padding-block: var(--s3) var(--s4);
+  border-top: 2px solid var(--green-800);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.checkout__total strong {
+  font-size: 1.375rem;
+  color: var(--green-900);
+  letter-spacing: -0.02em;
+}
+
+.checkout__error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s2);
+  margin-bottom: var(--s3);
+  padding: var(--s3);
+  background: var(--stamp-tint);
+  border: 1px solid #E4B7A3;
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--stamp-dark);
+}
+
+.checkout__error svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.checkout__note {
+  margin-top: var(--s3);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--ink-faint);
+  text-align: center;
+}
+
+/* ==========================================================================
+   ĐÁP ỨNG
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .checkout__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout__summary {
+    position: static;
+    order: -1;
+  }
+}

@@ -1,0 +1,619 @@
+/* ============================================================================
+   NGƯỜI PHỤ TRÁCH: Đào Quốc Đạt (0306241190)
+   CHỨC NĂNG: Trang trí trang chủ và các khối dùng chung.
+
+   BỐ CỤC PHẦN MỞ ĐẦU (điểm quan trọng nhất):
+   - Cột trái 62%: BẢNG LÔ dạng sổ cái, nền xanh đậm, kẻ mảnh, số canh phải.
+   - Cột phải 38%: lời giải thích FEFO + nút mua, nền giấy.
+   Tỉ lệ 62/38 cố tình lệch - bảng số liệu là nhân vật chính, không phải
+   ảnh minh hoạ.
+   ========================================================================== */
+
+/* ==========================================================================
+   PHẦN MỞ ĐẦU - BẢNG LÔ
+   ========================================================================== */
+
+.board {
+  background: var(--green-900);
+  color: var(--paper);
+  border-bottom: 1px solid var(--green-700);
+}
+
+.board__grid {
+  display: grid;
+  grid-template-columns: 1.62fr 1fr;
+  gap: 0;
+  align-items: stretch;
+}
+
+/* ---- Cột trái: sổ cái ---- */
+
+.board__ledger {
+  padding: var(--s7) var(--s6) var(--s6) 0;
+  border-right: 1px solid rgba(246, 243, 234, 0.14);
+}
+
+.board__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s2) var(--s4);
+  padding-bottom: var(--s4);
+  margin-bottom: var(--s2);
+  border-bottom: 2px solid rgba(246, 243, 234, 0.28);
+}
+
+.board__title {
+  font-size: clamp(1.5rem, 3.4vw, 2.25rem);
+  letter-spacing: -0.028em;
+}
+
+.board__meta {
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--green-200);
+}
+
+.board__meta-sep {
+  padding-inline: var(--s2);
+  opacity: 0.5;
+}
+
+.board__loading {
+  display: grid;
+  gap: 1px;
+  background: rgba(246, 243, 234, 0.14);
+  margin-top: var(--s2);
+}
+
+.board__skeleton {
+  height: 56px;
+  background: rgba(246, 243, 234, 0.06);
+  animation: none;
+}
+
+/* Bảng lô trên nền tối: kẻ sáng, chữ giấy */
+.board__table th {
+  color: var(--green-200);
+  border-bottom-color: rgba(246, 243, 234, 0.24);
+  padding-inline: 0;
+}
+
+.board__table th:not(:first-child),
+.board__table td:not(:first-child) {
+  padding-left: var(--s4);
+}
+
+.board__table td {
+  border-bottom: 1px solid rgba(246, 243, 234, 0.11);
+  padding-inline: 0;
+  color: rgba(246, 243, 234, 0.92);
+}
+
+.board__table tbody tr:hover {
+  background: rgba(246, 243, 234, 0.05);
+}
+
+.board__code {
+  font-size: 0.75rem;
+  color: var(--green-200);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.board__product {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.board__product a {
+  color: var(--paper);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.board__product a:hover {
+  text-decoration: underline;
+  text-decoration-color: rgba(246, 243, 234, 0.5);
+}
+
+.board__cert {
+  font-family: var(--font-data);
+  font-size: 0.625rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--green-200);
+}
+
+/* Hàng phụ trong ô sản phẩm: ngày hái và tem hạn dùng */
+.board__sub {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+
+.board__unit {
+  margin-left: 3px;
+  font-size: 0.75rem;
+  color: var(--green-200);
+}
+
+.board__foot {
+  margin-top: var(--s4);
+  font-size: 0.8125rem;
+  color: var(--green-200);
+  max-width: 52ch;
+}
+
+/* ---- Cột phải: giải thích ---- */
+
+.board__aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--s7) 0 var(--s7) var(--s6);
+  background: var(--green-800);
+  margin-right: calc((100vw - min(1180px, 100vw - 2.5rem)) / -2);
+  padding-right: calc((100vw - min(1180px, 100vw - 2.5rem)) / 2);
+  border-left: 1px solid rgba(246, 243, 234, 0.14);
+}
+
+.board__claim {
+  font-size: clamp(1.25rem, 2.1vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: -0.024em;
+  text-wrap: balance;
+}
+
+.board__claim strong {
+  color: var(--kraft-200);
+  font-weight: 700;
+}
+
+.board__body {
+  margin-top: var(--s4);
+  font-size: 0.9375rem;
+  line-height: 1.62;
+  color: rgba(246, 243, 234, 0.76);
+  max-width: 42ch;
+}
+
+.board__body strong {
+  color: var(--kraft-200);
+  font-weight: 600;
+}
+
+.board__steps {
+  list-style: none;
+  margin: var(--s5) 0 0;
+  padding: 0;
+  border-top: 1px solid rgba(246, 243, 234, 0.16);
+}
+
+.board__steps li {
+  display: flex;
+  gap: var(--s3);
+  align-items: baseline;
+  padding: var(--s3) 0;
+  border-bottom: 1px solid rgba(246, 243, 234, 0.1);
+  font-size: 0.875rem;
+  color: rgba(246, 243, 234, 0.82);
+}
+
+.board__step-num {
+  font-size: 0.6875rem;
+  color: var(--kraft-300);
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+.board__aside .btn {
+  margin-top: var(--s5);
+}
+
+.board__trace {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  align-self: flex-start;
+  margin-top: var(--s4);
+  font-size: 0.8125rem;
+  color: var(--green-200);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(169, 197, 180, 0.4);
+}
+
+.board__trace:hover {
+  color: var(--paper);
+}
+
+/* ==========================================================================
+   KHỐI NỘI DUNG CHUNG
+   ========================================================================== */
+
+.section {
+  padding-block: var(--s8);
+}
+
+.section--dark {
+  background: var(--kraft-200);
+  border-top: 1px solid var(--kraft-300);
+  border-bottom: 1px solid var(--kraft-300);
+}
+
+.section__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s2) var(--s4);
+  margin-bottom: var(--s5);
+}
+
+.section__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--green-700);
+  text-decoration: none;
+}
+
+.section__more:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ==========================================================================
+   LƯỚI SẢN PHẨM
+   ========================================================================== */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s5);
+}
+
+/* ---- Thẻ sản phẩm: một tấm nhãn ---- */
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition: border-color 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out),
+    transform 0.18s var(--ease-out);
+}
+
+.product-card:hover {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.product-card__image {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--kraft-100);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.product-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-card__placeholder {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  color: var(--green-500);
+  opacity: 0.55;
+}
+
+.product-card__soldout {
+  position: absolute;
+  top: var(--s3);
+  left: var(--s3);
+  padding: 3px 8px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-data);
+  font-size: 0.625rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.product-card__body {
+  padding: var(--s4);
+  flex: 1;
+}
+
+.product-card__name {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.018em;
+}
+
+.product-card__price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: var(--s2);
+}
+
+.product-card__price {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--green-800);
+}
+
+.product-card__unit {
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+}
+
+.product-card__was {
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+  text-decoration: line-through;
+}
+
+/* Dải lô ở chân thẻ - phần đặc trưng của hệ thống này */
+.product-card__strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s2);
+  padding: var(--s2) var(--s4);
+  background: var(--paper-dim);
+  border-top: 1px dashed var(--line-strong);
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+}
+
+.product-card__strip strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.product-card__cert {
+  font-family: var(--font-data);
+  font-size: 0.625rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--green-600);
+}
+
+/* ==========================================================================
+   QUY TRÌNH
+   ========================================================================== */
+
+.process {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s6);
+}
+
+.process__item {
+  padding-top: var(--s4);
+  border-top: 2px solid var(--green-800);
+}
+
+.process__num {
+  display: block;
+  margin-bottom: var(--s3);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+}
+
+.process__item h3 {
+  margin-bottom: var(--s2);
+  font-size: 1.0625rem;
+}
+
+.process__item p {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 38ch;
+}
+
+/* ==========================================================================
+   TIỆN ÍCH
+   ========================================================================== */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   ĐÁP ỨNG
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .board__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .board__ledger {
+    padding: var(--s6) 0;
+    border-right: none;
+    border-bottom: 1px solid rgba(246, 243, 234, 0.14);
+  }
+
+  .board__aside {
+    padding: var(--s6) 0;
+    margin-right: 0;
+    border-left: none;
+    background: transparent;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--s4);
+  }
+
+  .process {
+    grid-template-columns: 1fr;
+    gap: var(--s5);
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding-block: var(--s7);
+  }
+
+  .board__ledger {
+    padding: var(--s5) 0;
+  }
+
+  .board__table th,
+  .board__table td {
+    padding-block: var(--s3);
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   NHÃN NHẬN DIỆN NÔNG SẢN (khi chưa có ảnh thật)
+   Xem components/ProduceMark.jsx để biết lý do thiết kế.
+   ========================================================================== */
+
+.produce-mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--kraft-100);
+  color: var(--green-800);
+  overflow: hidden;
+}
+
+.produce-mark__rows {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+}
+
+.produce-mark__letter {
+  position: relative;
+  font-size: clamp(2.5rem, 6vw, 3.75rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--green-700);
+  opacity: 0.42;
+}
+
+.produce-mark__sku {
+  position: absolute;
+  bottom: var(--s2);
+  right: var(--s3);
+  font-size: 0.5625rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  opacity: 0.7;
+}
+
+.produce-mark--lg .produce-mark__letter {
+  font-size: clamp(4rem, 9vw, 6rem);
+}
+
+
+/* ==========================================================================
+   BẢNG LÔ TRÊN ĐIỆN THOẠI: chuyển thành danh sách thẻ
+
+   Lý do: ở 375px, bảng 3 cột bóp tên sản phẩm xuống 2–3 dòng, khó đọc.
+   Bảng là công cụ của màn hình rộng; trên điện thoại, cùng dữ liệu đó
+   đọc tốt hơn dưới dạng từng dòng có nhãn rõ ràng.
+   ========================================================================== */
+
+@media (max-width: 620px) {
+  .board__table thead {
+    display: none;
+  }
+
+  .board__table,
+  .board__table tbody,
+  .board__table tr,
+  .board__table td {
+    display: block;
+    width: 100%;
+  }
+
+  .board__table tr {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--s1) var(--s3);
+    padding-block: var(--s3);
+    border-bottom: 1px solid rgba(246, 243, 234, 0.11);
+  }
+
+  .board__table td {
+    padding: 0;
+    border: none;
+  }
+
+  /* Mã lô: dòng đầu, chữ nhỏ, màu dịu */
+  .board__table td:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 0.625rem;
+    color: var(--green-200);
+  }
+
+  /* Tên sản phẩm: dòng hai, to và đậm nhất */
+  .board__table td:nth-child(2) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .board__product a {
+    font-size: 1.0625rem;
+  }
+
+  /* Số lượng: cột phải, canh giữa hai dòng đầu */
+  .board__table td:nth-child(3) {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .board__sub {
+    margin-top: var(--s2);
+  }
+}

@@ -1,0 +1,217 @@
+/* ============================================================================
+   NGƯỜI PHỤ TRÁCH: Trần Quốc Khánh (Nhóm trưởng - 0306241206)
+   CHỨC NĂNG: Trang trí trang đăng nhập / đăng ký.
+
+   Hai cột: bên trái nền xanh đậm nói lý do nên có tài khoản, bên phải là
+   biểu mẫu trên nền giấy. Trên điện thoại thì phần thông điệp thu gọn lại
+   thành một dòng, biểu mẫu chiếm toàn màn hình.
+   ========================================================================== */
+
+.auth {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 68px);
+}
+
+/* ==========================================================================
+   CỘT TRÁI
+   ========================================================================== */
+
+.auth__aside {
+  display: flex;
+  flex-direction: column;
+  padding: var(--s6) var(--s7);
+  background: var(--green-900);
+  color: var(--paper);
+}
+
+.auth__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s3);
+  align-self: flex-start;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.auth__mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  background: var(--kraft-200);
+  color: var(--green-900);
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  font-weight: 700;
+  clip-path: polygon(0 0, 100% 0, 100% 62%, 88% 100%, 0 100%);
+}
+
+.auth__pitch {
+  margin-block: auto;
+  padding-block: var(--s7);
+  max-width: 44ch;
+}
+
+.auth__pitch-title {
+  font-size: clamp(1.5rem, 2.6vw, 2.125rem);
+  line-height: 1.2;
+  letter-spacing: -0.028em;
+  text-wrap: balance;
+}
+
+.auth__benefits {
+  list-style: none;
+  margin: var(--s5) 0 0;
+  padding: 0;
+  border-top: 1px solid rgba(246, 243, 234, 0.16);
+}
+
+.auth__benefits li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s3);
+  padding-block: var(--s3);
+  border-bottom: 1px solid rgba(246, 243, 234, 0.1);
+  font-size: 0.9375rem;
+  color: rgba(246, 243, 234, 0.82);
+}
+
+.auth__benefits svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--leaf);
+}
+
+.auth__guest {
+  margin-top: var(--s5);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--green-200);
+}
+
+.auth__guest a {
+  color: var(--kraft-200);
+  text-underline-offset: 3px;
+}
+
+/* ==========================================================================
+   CỘT PHẢI
+   ========================================================================== */
+
+.auth__panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--s6) clamp(var(--s5), 8vw, var(--s9));
+  background: var(--paper);
+}
+
+.auth__tabs {
+  display: flex;
+  gap: var(--s1);
+  margin-bottom: var(--s5);
+  padding-bottom: var(--s2);
+  border-bottom: 1px solid var(--line);
+}
+
+.auth__tab {
+  padding: var(--s2) var(--s3);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ink-faint);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -10px;
+  transition: color 0.16s var(--ease-out), border-color 0.16s var(--ease-out);
+}
+
+.auth__tab:hover {
+  color: var(--ink-soft);
+}
+
+.auth__tab.is-active {
+  color: var(--ink);
+  border-bottom-color: var(--green-800);
+}
+
+.auth__title {
+  margin-bottom: var(--s5);
+  font-size: 1.375rem;
+  letter-spacing: -0.022em;
+}
+
+.auth__panel form {
+  max-width: 400px;
+}
+
+.auth__error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s2);
+  margin-top: var(--s4);
+  padding: var(--s3);
+  background: var(--stamp-tint);
+  border: 1px solid #E4B7A3;
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--stamp-dark);
+}
+
+.auth__error svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.auth__submit {
+  margin-top: var(--s5);
+}
+
+.auth__switch {
+  margin-top: var(--s4);
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+}
+
+.auth__switch a {
+  color: var(--green-700);
+  font-weight: 600;
+  text-underline-offset: 3px;
+}
+
+/* ==========================================================================
+   ĐÁP ỨNG
+   ========================================================================== */
+
+@media (max-width: 860px) {
+  .auth {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .auth__aside {
+    padding: var(--s5);
+  }
+
+  .auth__pitch {
+    margin-block: 0;
+    padding-block: var(--s5) 0;
+  }
+
+  .auth__pitch-title {
+    font-size: 1.25rem;
+  }
+
+  /* Trên điện thoại, ẩn bớt danh sách lợi ích để biểu mẫu lên sớm */
+  .auth__benefits,
+  .auth__guest {
+    display: none;
+  }
+
+  .auth__panel {
+    padding: var(--s6) var(--s5) var(--s8);
+  }
+}

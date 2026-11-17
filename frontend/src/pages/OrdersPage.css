@@ -1,0 +1,308 @@
+/* ============================================================================
+   NGƯỜI PHỤ TRÁCH: Trần Thanh An (0306241171)
+   CHỨC NĂNG: Trang trí trang danh sách đơn và chi tiết đơn hàng.
+   ========================================================================== */
+
+.orders {
+  padding-block: var(--s6) var(--s8);
+}
+
+.orders__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s2);
+  padding-bottom: var(--s3);
+  margin-bottom: var(--s5);
+  border-bottom: 2px solid var(--green-800);
+}
+
+.orders__title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.orders__count {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.orders__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: var(--s4);
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.orders__back:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ==========================================================================
+   DANH SÁCH ĐƠN
+   ========================================================================== */
+
+.order-list {
+  border-top: 1px solid var(--line-strong);
+}
+
+.order-row {
+  display: grid;
+  grid-template-columns: 1fr auto 90px 130px 24px;
+  align-items: center;
+  gap: var(--s4);
+  padding: var(--s4) var(--s3);
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.14s var(--ease-out);
+}
+
+.order-row:hover {
+  background: var(--paper-dim);
+}
+
+.order-row__main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.order-row__code {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.order-row__date {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+}
+
+.order-row__items {
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+  text-align: right;
+}
+
+.order-row__total {
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: right;
+}
+
+.order-row__arrow {
+  color: var(--ink-faint);
+}
+
+.order-row:hover .order-row__arrow {
+  color: var(--ink);
+}
+
+/* ==========================================================================
+   CHI TIẾT ĐƠN
+   ========================================================================== */
+
+.order-detail__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s3);
+  padding-bottom: var(--s4);
+  margin-bottom: var(--s5);
+  border-bottom: 2px solid var(--green-800);
+}
+
+.order-detail__date {
+  margin-top: 4px;
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+}
+
+.order-detail__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+}
+
+.order-detail__grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: var(--s6);
+  align-items: start;
+}
+
+.order-block {
+  margin-bottom: var(--s5);
+  padding: var(--s4);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.order-block--kraft {
+  background: var(--kraft-100);
+  border-color: var(--kraft-300);
+}
+
+.order-block__title {
+  margin-bottom: var(--s3);
+  font-size: 0.6875rem;
+  font-family: var(--font-data);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.order-block__note {
+  margin-bottom: var(--s3);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.order-block .ledger {
+  margin-inline: calc(var(--s4) * -1);
+  width: calc(100% + var(--s4) * 2);
+}
+
+.order-block .ledger th:first-child,
+.order-block .ledger td:first-child {
+  padding-left: var(--s4);
+}
+
+.order-block .ledger th:last-child,
+.order-block .ledger td:last-child {
+  padding-right: var(--s4);
+}
+
+/* ---- Các lô đã lấy ---- */
+
+.alloc-list {
+  border-top: 1px solid var(--line);
+}
+
+.alloc-row {
+  display: grid;
+  grid-template-columns: 1fr auto 70px;
+  align-items: center;
+  gap: var(--s3);
+  padding-block: var(--s2);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.8125rem;
+}
+
+.alloc-row__code {
+  font-weight: 500;
+}
+
+.alloc-row__expiry {
+  color: var(--ink-faint);
+}
+
+.alloc-row__qty {
+  font-weight: 600;
+  text-align: right;
+}
+
+/* ---- Tổng tiền ---- */
+
+.order-totals {
+  margin: 0;
+  padding-bottom: var(--s3);
+  border-bottom: 1px solid var(--kraft-300);
+}
+
+.order-totals > div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s3);
+  padding-block: 5px;
+  font-size: 0.9375rem;
+}
+
+.order-totals dt {
+  color: var(--ink-soft);
+}
+
+.order-totals dd {
+  margin: 0;
+  font-weight: 500;
+}
+
+.order-totals__discount dt,
+.order-totals__discount dd {
+  color: #3E6129;
+}
+
+.order-totals__grand {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s3);
+  padding-top: var(--s3);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.order-totals__grand strong {
+  font-size: 1.375rem;
+  color: var(--green-900);
+  letter-spacing: -0.02em;
+}
+
+/* ---- Địa chỉ ---- */
+
+.order-address {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+.order-address strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.order-note {
+  margin-top: var(--s3);
+  padding-top: var(--s3);
+  border-top: 1px dashed var(--line);
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+}
+
+/* ==========================================================================
+   ĐÁP ỨNG
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .order-detail__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .order-row {
+    grid-template-columns: 1fr auto;
+    gap: var(--s2) var(--s3);
+  }
+
+  .order-row__items,
+  .order-row__arrow {
+    display: none;
+  }
+
+  .order-row__total {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
